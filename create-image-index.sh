@@ -2,9 +2,15 @@
 declare -a OS_LIST=("linux")
 declare -a ARCH_LIST=("amd64" "arm64" "s390x" "ppc64le")
 
-REGISTRY="YOUR_CONTAINER_REGISTRY_NAME_HERE"
-NAMESPACE="YOUR_NAMESPACE_HERE"
-IMAGE_NAME="YOUR_IMAGE_NAME_HERE"
+if [ $# -eq 0 ]
+  then
+    echo -e "\nUsage : ./create-image-index.sh <registry> <namespace> <image-name>"
+    echo -e "No arguments supplied, using defaults\n"
+fi
+
+REGISTRY="${1:-test}"
+NAMESPACE="${2:-test}"
+IMAGE_NAME="${3:-test}"
 
 REPO=${REGISTRY}/${NAMESPACE}/${IMAGE_NAME}
 
